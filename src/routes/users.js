@@ -6,8 +6,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req.body);
-  res.send("You have reached the post request!");
+  // const firstname = req.body.firstName;
+  // const email = req.body.email;
+  // const password = req.body.password;
+  const { firstName, email, password } = req.body;
+  console.log(firstName, email, password);
+  res.json({ firstName, email, password, _id: "randomId" });
+  // res.send("You have reached the post request!");
 });
 
 export default router;
