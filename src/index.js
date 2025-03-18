@@ -1,5 +1,6 @@
 import express from "express";
 import router from "./routes/users.js";
+import hashPassword from "./middleware/passencrypt.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -17,6 +18,8 @@ app.use((req, res, next) => {
 });
 
 connectDB();
+
+app.use(hashPassword);
 
 // MIDDLEWARE
 app.use(express.json());
