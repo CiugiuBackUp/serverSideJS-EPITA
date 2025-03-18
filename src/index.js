@@ -3,6 +3,9 @@ import router from "./routes/users.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Connect to DB
+import connectDB from "./utils/db.js";
+
 // cors middleware
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -12,6 +15,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+connectDB();
 
 // MIDDLEWARE
 app.use(express.json());

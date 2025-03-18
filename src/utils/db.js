@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const mongoConnection = "mongodb://127.0.0.1:27017";
+dotenv.config();
+
+const uri = process.env.DB_CONNECTION;
+
+const mongoConnection = uri || "mongodb://127.0.0.1:27017";
 
 mongoose.set("strictQuery", true);
 

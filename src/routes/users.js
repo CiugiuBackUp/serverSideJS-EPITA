@@ -11,8 +11,8 @@ router.post("/", hashPassword, (req, res) => {
   // const email = req.body.email;
   // const password = req.body.password;
   const { firstName, email } = req.body;
-  const hashedPassword = req.hashPassword;
-  res.json({ firstName, email, hashedPassword, _id: "randomId" });
+  const hashedPassword = req.hashedPassword;
+  res.status(201).json({ firstName, email, hashedPassword, _id: "randomId" });
   // res.send("You have reached the post request!");
 });
 
