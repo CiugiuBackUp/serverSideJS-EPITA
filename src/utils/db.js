@@ -3,9 +3,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const uri = process.env.DB_CONNECTION;
+const uri =
+  process.env.NODE_ENV === "dev"
+    ? process.env.LOCAL_DB_CONNECTION
+    : process.env.DB_CONNECTION;
 
-const mongoConnection = uri || "mongodb://127.0.0.1:27017";
+const mongoConnection = uri;
 
 set("strictQuery", true);
 

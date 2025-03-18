@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 
 // Connect to DB
 import connectDB from "./utils/db.js";
+import hashPassword from "./middleware/passencrypt.js";
 
 // cors middleware
 app.use((req, res, next) => {
@@ -16,10 +17,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.json());
+
+app.use(hashPassword);
+
 connectDB();
 
 // MIDDLEWARE
-app.use(express.json());
 app.use("/api/users", router);
 
 // data sent to the user
