@@ -1,11 +1,11 @@
 import express from "express";
 import router from "./routes/users.js";
-import hashPassword from "./middleware/passencrypt.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Connect to DB
 import connectDB from "./utils/db.js";
+import hashPassword from "./middleware/passencrypt.js";
 
 // cors middleware
 app.use((req, res, next) => {
@@ -17,12 +17,13 @@ app.use((req, res, next) => {
   next();
 });
 
-connectDB();
+app.use(express.json());
 
 app.use(hashPassword);
 
+connectDB();
+
 // MIDDLEWARE
-app.use(express.json());
 app.use("/api/users", router);
 
 // data sent to the user
