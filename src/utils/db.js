@@ -1,7 +1,7 @@
 import { set, connect } from "mongoose";
-import dotenv from "dotenv";
+import { config } from "dotenv";
 
-dotenv.config();
+config();
 
 const uri =
   process.env.NODE_ENV === "dev"
