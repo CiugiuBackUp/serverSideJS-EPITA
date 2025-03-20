@@ -4,6 +4,8 @@ export const userLogIn = (req, res) => {
   res.send("User login");
 };
 
+// Error handling added
+
 export const userSignUp = async (req, res) => {
   try {
     //Get the data from the request
