@@ -25,6 +25,7 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     imageUrl: {
       type: String,
@@ -33,5 +34,7 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.plugin(uniqueValidator);
 
 export default model("userSchema", userSchema);
