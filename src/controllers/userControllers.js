@@ -29,7 +29,7 @@ export const userLogIn = async (req, res) => {
       }
     );
 
-    res.status(200).send("User ok ok");
+    res.status(200).send(token);
   } catch (error) {
     res.status(401).json({ message: "Invalid credentials" });
   }
