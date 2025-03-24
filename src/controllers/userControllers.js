@@ -1,7 +1,38 @@
 import User from "../models/userModels.js";
+import jwt from "jsonwebtoken";
+import { config } from "dotenv";
+import { compare } from "bcrypt";
 
-export const userLogIn = (req, res) => {
-  res.send("User login");
+config();
+
+export const userLogIn = async (req, res) => {
+  // res.send("User login");
+  const { email, password } = req.body;
+  try {
+    const foundUser = await User.findOne({ email });
+
+    if (!foundUser) {
+      throw new Error("User not found.");
+    }
+
+    const paswwordMatch = await compare(password, foundUser.password);
+
+    if (!paswwordMatch) {
+      throw new Error("Invalid credentials");
+    }
+
+    const token = jwt.sign(
+      { userId: foundUser._id },
+      process.env.SECRET_TOKEN_KEY,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    res.status(200).send("User ok ok");
+  } catch (error) {
+    res.status(401).json({ message: "Invalid credentials" });
+  }
 };
 
 // Error handling added
