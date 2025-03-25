@@ -30,7 +30,7 @@ app.use(express.json());
 
 app.use(hashPassword);
 
-app.use("../assets", express.static(path.join(__dirname, "assets")));
+app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 connectDB();
 

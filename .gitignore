@@ -1,0 +1,15 @@
+# Node modules
+src/node_modules/
+ 
+# Environment variables
+src/.env
+src/.env.test
+src/.env.production
+ 
+# Compiled output
+src/dist
+src/build
+src/out
+
+# Assets
+assets/

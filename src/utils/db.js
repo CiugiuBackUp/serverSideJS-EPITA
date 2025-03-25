@@ -3,6 +3,8 @@ import { config } from "dotenv";
 
 config();
 
+console.log(process.env.NODE_ENV);
+
 const uri =
   process.env.NODE_ENV === "dev"
     ? process.env.LOCAL_DB_CONNECTION

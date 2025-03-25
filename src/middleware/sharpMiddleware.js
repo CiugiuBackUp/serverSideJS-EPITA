@@ -22,9 +22,9 @@ const sharpMiddleware = (outputFormat = "webp", quality = 80) => {
         .slice(0, -1)
         .join("."); // Remove the file extension
       const outputPath = join(
-        "uploads",
+        "./assets",
         `${filenameWithoutExtension}.${outputFormat}`
-      ); // Output file path
+      ).replace(/\\/g, "/"); // Output file path
 
       // Process the image using Sharp
       await sharp(inputPath)

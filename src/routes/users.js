@@ -10,12 +10,12 @@ router.post("/login", userLogIn);
 router.post("/signup", userSignUp);
 
 router.put(
-  "/updateUser/:id",
+  "/updateUser",
   verifyToken,
   upload.single("image"),
   sharpMiddleware(),
   (req, res) => {
-    if (!gitreq.file) {
+    if (!req.file) {
       return res
         .status(400)
         .json({ error: "Error uploading the file. Wrong format ?" });
