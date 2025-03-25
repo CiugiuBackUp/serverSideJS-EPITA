@@ -1,6 +1,11 @@
 import express from "express";
 import router from "./routes/users.js";
+import path from "path";
+import { fileURLToPath } from "url";
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Port
 import { config } from "dotenv";
@@ -24,6 +29,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(hashPassword);
+
+app.use("../assets", express.static(path.join(__dirname, "assets")));
 
 connectDB();
 
