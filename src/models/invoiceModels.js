@@ -22,7 +22,7 @@ const invoiceSchema = new Schema(
     },
   },
   { timestamps: true }
-)
+);
 
 invoiceSchema.plugin(uniqueValidator);
 
