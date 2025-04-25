@@ -24,12 +24,19 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, description, imageUrl } = req.body;
-    const newProduct = new Product({ name, price, description, imageUrl });
+    const { name, price, description, stockQuantity, category } = req.body;
+    const newProduct = new Product({
+      name,
+      price,
+      description,
+      stockQuantity,
+      category,
+    });
     const savedProduct = await newProduct.save();
     res.status(201).json(savedProduct);
   } catch (error) {
     res.status(500).json({ message: "Error creating product" });
+    console.log(error);
   }
 };
 
