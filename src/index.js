@@ -1,5 +1,7 @@
 import express from "express";
-import router from "./routes/users.js";
+import userRouter from "./routes/users.js";
+import productRouter from "./routes/products.js";
+import invoiceRouter from "./routes/invoices.js";
 import path from "path";
 import { fileURLToPath } from "url";
 const app = express();
@@ -35,7 +37,9 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 connectDB();
 
 // MIDDLEWARE
-app.use("/api/users", router);
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
+app.use("/api/invoices", invoiceRouter);
 
 // data sent to the user
 // app.get("/", (req, res) => {
