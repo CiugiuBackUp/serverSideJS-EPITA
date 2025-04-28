@@ -24,13 +24,15 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, price, description, stockQuantity, category } = req.body;
+    const { name, price, description, stockQuantity, category, imageUrl } =
+      req.body;
     const newProduct = new Product({
       name,
       price,
       description,
       stockQuantity,
       category,
+      imageUrl,
     });
     const savedProduct = await newProduct.save();
     res.status(201).json(savedProduct);
@@ -43,10 +45,11 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, price, description, imageUrl } = req.body;
+    const { name, price, description, imageUrl, category, stockQuantity } =
+      req.body;
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
-      { name, price, description, imageUrl },
+      { name, price, description, imageUrl, category, stockQuantity },
       { new: true }
     );
     if (!updatedProduct) {
